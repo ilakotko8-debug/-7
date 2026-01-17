@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Метатеги для SEO -->
+    <meta name="description" content="GuitarMaster - магазин гитар, уроки игры на гитаре и музыкальные аксессуары. Продажа акустических, электро- и бас-гитар от ведущих брендов.">
+    <meta name="keywords" content="гитара, купить гитару, уроки игры на гитаре, музыкальные инструменты, акустическая гитара, электрогитара, бас-гитара, обучение гитаре">
+    <title>GuitarMaster - Магазин гитар и уроки игры</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d35400;
+            --primary-dark: #a84300;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --wood-color: #8b4513;
+            --light-color: #f9f5f0;
+            --text-color: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Верхняя навигация */
+        header {
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Карусель с ручным управлением */
+        .carousel {
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-slide {
+            width: 25%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: var(--white);
+            padding: 30px;
+        }
+        
+        .slide-caption h2 {
+            color: var(--white);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        
+        .carousel-control {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-control:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .indicator.active {
+            background-color: var(--white);
+            transform: scale(1.2);
+        }
+        
+        /* Основной контент */
+        .content-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .image-description {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 80px;
+            gap: 40px;
+        }
+        
+        .image-description:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .image-box {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .image-box img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .image-box img:hover {
+            transform: scale(1.02);
+        }
+        
+        .description-box {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .description-title {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .description-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        /* Квадраты с информацией */
+        .info-squares {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 80px 0;
+        }
+        
+        .square {
+            flex: 1;
+            min-width: 280px;
+            max-width: 450px;
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .square:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .square-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+        
+        .square-title {
+            font-size: 1.6rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .square-text {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        /* Новый блок - популярные гитары */
+        .guitar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .guitar-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .guitar-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .guitar-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .guitar-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .guitar-card:hover .guitar-img img {
+            transform: scale(1.1);
+        }
+        
+        .guitar-info {
+            padding: 20px;
+        }
+        
+        .guitar-name {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .guitar-price {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        /* Футер */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 80px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-title {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+        
+        .footer-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-logo {
+            font-size: 2.5rem;
+            color: #ecf0f1;
+            transition: var(--transition);
+        }
+        
+        .footer-logo:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-text {
+            text-align: center;
+            padding-top: 30px;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .carousel {
+                height: 400px;
+            }
+            
+            .slide-caption h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .carousel {
+                height: 350px;
+            }
+            
+            .slide-caption {
+                padding: 20px;
+            }
+            
+            .slide-caption h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .footer-logos {
+                gap: 30px;
+            }
+            
+            .footer-logo {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .nav-btn {
+                width: 200px;
+            }
+            
+            .carousel {
+                height: 300px;
+            }
+            
+            .carousel-control {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .guitar-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-logos {
+                gap: 20px;
+            }
+            
+            .footer-logo {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта с логотипом и кнопками -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-guitar"></i>
+                </div>
+                <div class="logo-text">Guitar<span>Master</span></div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn"><i class="fas fa-home"></i> Главная</button>
+                <button class="nav-btn"><i class="fas fa-shopping-cart"></i> Магазин</button>
+                <button class="nav-btn"><i class="fas fa-graduation-cap"></i> Обучение</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Карусель изображений с ручным управлением -->
+    <section class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Коллекция гитар">
+                <div class="slide-caption">
+                    <h2>Лучшие гитары от ведущих брендов</h2>
+                    <p>Акустические, электро- и бас-гитары по доступным ценам</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Уроки игры на гитаре">
+                <div class="slide-caption">
+                    <h2>Профессиональные уроки игры на гитаре</h2>
+                    <p>Обучаем с нуля и помогаем совершенствовать навыки</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Музыкальные аксессуары">
+                <div class="slide-caption">
+                    <h2>Аксессуары для гитаристов</h2>
+                    <p>Все необходимое для комфортной игры и ухода за инструментом</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Студия звукозаписи">
+                <div class="slide-caption">
+                    <h2>Студия звукозаписи и репетиционная база</h2>
+                    <p>Профессиональное оборудование для репетиций и записи</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Элементы управления каруселью -->
+        <div class="carousel-controls">
+            <button class="carousel-control prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-control next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <!-- Индикаторы слайдов -->
+        <div class="carousel-indicators">
+            <div class="indicator active" data-slide="0"></div>
+            <div class="indicator" data-slide="1"></div>
+            <div class="indicator" data-slide="2"></div>
+            <div class="indicator" data-slide="3"></div>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <h2 class="section-title">Магазин гитар и обучение</h2>
+        
+        <!-- Первая секция с изображением и описанием -->
+        <section class="image-description">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1550985616-10810253b84d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Акустические гитары">
+            </div>
+            <div class="description-box">
+                <h3 class="description-title">Акустические гитары</h3>
+                <p class="description-text">В нашем магазине представлен широкий выбор акустических гитар от ведущих мировых производителей: Yamaha, Taylor, Martin, Fender, Cort и многих других. Мы подберем идеальный инструмент для начинающих и профессиональных музыкантов.</p>
+                <p class="description-text">Каждая гитара проходит предпродажную подготовку: настройку мензуры, высоты струн и проверку электроники (для гитар с пьезозвукоснимателем). Наши специалисты помогут выбрать гитару, которая подойдет именно вам по звуку, размеру и бюджету.</p>
+                <a href="#" class="btn">Смотреть каталог</a>
+            </div>
+        </section>
+        
+        <!-- Вторая секция с изображением и описанием -->
+        <section class="image-description">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1541689221361-e74f4695f7e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Обучение игре на гитаре">
+            </div>
+            <div class="description-box">
+                <h3 class="description-title">Школа игры на гитаре</h3>
+                <p class="description-text">Обучаем игре на гитаре с любого уровня подготовки. Наши преподаватели - профессиональные музыканты с многолетним опытом преподавания. Мы разработали уникальные методики обучения для детей и взрослых.</p>
+                <p class="description-text">В программе обучения: постановка рук, основы теории музыки, изучение аккордов, техника перебора и боя, игра медиатором, изучение популярных песен и композиций, импровизация и создание собственной музыки.</p>
+                <a href="#" class="btn">Записаться на урок</a>
+            </div>
+        </section>
+        
+        <!-- Популярные гитары -->
+        <h2 class="section-title">Популярные модели</h2>
+        <div class="guitar-grid">
+            <div class="guitar-card">
+                <div class="guitar-img">
+                    <img src="https://images.unsplash.com/photo-1605020420620-20c943cc4669?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Акустическая гитара Yamaha">
+                </div>
+                <div class="guitar-info">
+                    <h3 class="guitar-name">Yamaha FG800</h3>
+                    <p class="guitar-price">25 990 ₽</p>
+                    <p>Акустическая гитара, идеальная для начинающих</p>
+                </div>
+            </div>
+            
+            <div class="guitar-card">
+                <div class="guitar-img">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Электрогитара Fender">
+                </div>
+                <div class="guitar-info">
+                    <h3 class="guitar-name">Fender Stratocaster</h3>
+                    <p class="guitar-price">67 500 ₽</p>
+                    <p>Легендарная электрогитара, классика рока</p>
+                </div>
+            </div>
+            
+            <div class="guitar-card">
+                <div class="guitar-img">
+                    <img src="https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Бас-гитара Ibanez">
+                </div>
+                <div class="guitar-info">
+                    <h3 class="guitar-name">Ibanez GSR200</h3>
+                    <p class="guitar-price">32 800 ₽</p>
+                    <p>Бас-гитара для начинающих и опытных музыкантов</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Квадраты с информацией -->
+        <div class="info-squares">
+            <div class="square">
+                <div class="square-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3 class="square-title">Ремонт и обслуживание</h3>
+                <p class="square-text">Профессиональный ремонт гитар любого типа. Замена струн, настройка анкера, ремонт электроники, полировка и восстановление ладов. Гарантия на все виды работ.</p>
+            </div>
+            <div class="square">
+                <div class="square-icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <h3 class="square-title">Аксессуары и оборудование</h3>
+                <p class="square-text">Широкий выбор чехлов, медиаторов, каподастров, тюнеров, струн, процессоров эффектов и усилителей. Все необходимое для гитариста в одном месте.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">GuitarMaster</h3>
+                    <p>Магазин гитар и школа музыки. Продажа музыкальных инструментов, обучение игре, ремонт и обслуживание. С 2010 года мы помогаем музыкантам реализовывать их творческий потенциал.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Категории</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-guitar"></i> Акустические гитары</a></li>
+                        <li><a href="#"><i class="fas fa-bolt"></i> Электрогитары</a></li>
+                        <li><a href="#"><i class="fas fa-volume-up"></i> Бас-гитары</a></li>
+                        <li><a href="#"><i class="fas fa-school"></i> Обучение</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Музыкальная, 15</li>
+                        <li><i class="fas fa-phone"></i> +7 (999) 456-78-90</li>
+                        <li><i class="fas fa-envelope"></i> info@guitarmaster.ru</li>
+                        <li><i class="fas fa-clock"></i> Пн-Пт: 10:00-21:00, Сб-Вс: 11:00-19:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-logos">
+                <div class="footer-logo">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="footer-logo">
+                    <i class="fab fa-vk"></i>
+                </div>
+                <div class="footer-logo">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <div class="footer-logo">
+                    <i class="fab fa-instagram"></i>
+                </div>
+            </div>
+            
+            <div class="footer-text">
+                <p>&copy; 2023 GuitarMaster. Все права защищены. Данный сайт является демонстрационным примером и создан в образовательных целях. Изображения предоставлены Unsplash. Иконки предоставлены Font Awesome.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Сайт разработан с использованием HTML5, CSS3 и JavaScript. Проверка на валидность пройдена успешно.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Управление каруселью
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselInner = document.querySelector('.carousel-inner');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentSlide = 0;
+            const totalSlides = 4;
+            
+            // Функция для перехода к определенному слайду
+            function goToSlide(slideIndex) {
+                currentSlide = slideIndex;
+                if (currentSlide >= totalSlides) currentSlide = 0;
+                if (currentSlide < 0) currentSlide = totalSlides - 1;
+                
+                // Перемещаем карусель
+                carouselInner.style.transform = `translateX(-${currentSlide * 25}%)`;
+                
+                // Обновляем индикаторы
+                indicators.forEach((indicator, index) => {
+                    if (index === currentSlide) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Следующий слайд
+            nextBtn.addEventListener('click', function() {
+                goToSlide(currentSlide + 1);
+            });
+            
+            // Предыдущий слайд
+            prevBtn.addEventListener('click', function() {
+                goToSlide(currentSlide - 1);
+            });
+            
+            // Клик по индикаторам
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    goToSlide(slideIndex);
+                });
+            });
+            
+            // Автоматическое перелистывание (по желанию)
+            let autoSlideInterval = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+            
+            // Останавливаем авто-перелистывание при наведении
+            const carousel = document.querySelector('.carousel');
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            });
+            
+            // Добавляем интерактивность кнопкам навигации
+            document.querySelectorAll('.nav-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const buttonText = this.textContent.trim();
+                    
+                    if (buttonText.includes('Магазин')) {
+                        const guitarGrid = document.querySelector('.guitar-grid');
+                        window.scrollTo({
+                            top: guitarGrid.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    } else if (buttonText.includes('Обучение')) {
+                        const descriptionBoxes = document.querySelectorAll('.description-box');
+                        if (descriptionBoxes[1]) {
+                            window.scrollTo({
+                                top: descriptionBoxes[1].offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    } else {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
